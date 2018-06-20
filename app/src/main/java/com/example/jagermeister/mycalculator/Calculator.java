@@ -1,14 +1,9 @@
 package com.example.jagermeister.mycalculator;
 
 import android.app.Activity;
-import android.media.VolumeAutomation;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
-import java.security.KeyStore;
-import java.security.PrivilegedAction;
 
 public class Calculator extends Activity implements View.OnClickListener
 {
@@ -21,6 +16,7 @@ public class Calculator extends Activity implements View.OnClickListener
     private String NumAtRight;
     private OPERATOR currentOperator;
     private int calculationResult;
+    private String calculationString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -30,6 +26,7 @@ public class Calculator extends Activity implements View.OnClickListener
 
         currentNum = "";
         calculationResult = 0;
+        calculationString = "";
 
         txtClac = findViewById(R.id.txtClac);
         txtResults = findViewById(R.id.txtResults);
@@ -58,7 +55,7 @@ public class Calculator extends Activity implements View.OnClickListener
         switch (v.getId())
         {
             case R.id.btnEqual:
-
+                operatorIsTapped(OPERATOR.EQUAL);
                 break;
             case R.id.btn9: numberIsTapped(9);  break;
             case R.id.btn8: numberIsTapped(8);  break;
@@ -70,19 +67,35 @@ public class Calculator extends Activity implements View.OnClickListener
             case R.id.btn2: numberIsTapped(2);  break;
             case R.id.btn1: numberIsTapped(1);  break;
             case R.id.btn0: numberIsTapped(0);  break;
-            case R.id.btnAdd:   operatorIsTapped(OPERATOR.ADD);    break;
-            case R.id.btnSub:   operatorIsTapped(OPERATOR.SUB);     break;
-            case R.id.btnMul:   operatorIsTapped(OPERATOR.MUL);     break;
-            case R.id.btnDiv:   operatorIsTapped(OPERATOR.DIV);     break;
-            case R.id.btnC:     operatorIsTapped(OPERATOR.EQUAL);   break;
+            case R.id.btnAdd:
+                operatorIsTapped(OPERATOR.ADD);
+                calculationString += " + ";
+                break;
+            case R.id.btnSub:
+                operatorIsTapped(OPERATOR.SUB);
+                calculationString += " - ";
+                break;
+            case R.id.btnMul:
+                operatorIsTapped(OPERATOR.MUL);
+                calculationString += " * ";
+                break;
+            case R.id.btnDiv:
+                operatorIsTapped(OPERATOR.DIV);
+                calculationString += " / ";
+                break;
+            case R.id.btnC:
+                break;
 
         }
+        txtClac.setText(calculationString);
     }
 
     private void numberIsTapped(int tappedNumber)
     {
         currentNum = currentNum + String.valueOf(tappedNumber);
         txtResults.setText(currentNum);
+        calculationString = currentNum;
+        txtClac.setText(calculationString);
     }
 
     private void operatorIsTapped(OPERATOR tappedOperator)
@@ -100,6 +113,7 @@ public class Calculator extends Activity implements View.OnClickListener
             }
             NumAtleft = String.valueOf(calculationResult);
             txtResults.setText(NumAtleft);
+            calculationString = NumAtleft;
         }
         else
         {
