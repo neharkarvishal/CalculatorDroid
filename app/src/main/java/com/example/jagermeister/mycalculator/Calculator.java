@@ -141,8 +141,8 @@ public class Calculator extends Activity implements View.OnClickListener
         currentNum = "";
         currentOperator = null;
         txtResults.setText("0");
-        calculationString = "";
-        txtClac.setText("0.0");
+        calculationString = "0.0";
+        //txtClac.setText("0.0");
 
     }
 }
