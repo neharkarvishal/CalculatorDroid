@@ -84,6 +84,7 @@ public class Calculator extends Activity implements View.OnClickListener
                 calculationString += " / ";
                 break;
             case R.id.btnC:
+                clearTapped();
                 break;
 
         }
@@ -131,5 +132,17 @@ public class Calculator extends Activity implements View.OnClickListener
             currentNum = "";
         }
         currentOperator = tappedOperator;
+    }
+
+    private void clearTapped() {
+        NumAtleft = "";
+        NumAtRight = "";
+        calculationResult = 0;
+        currentNum = "";
+        currentOperator = null;
+        txtResults.setText("0");
+        calculationString = "";
+        txtClac.setText("0.0");
+
     }
 }
