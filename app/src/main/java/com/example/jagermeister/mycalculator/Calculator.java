@@ -100,20 +100,30 @@ public class Calculator extends Activity implements View.OnClickListener
 
     private void operatorIsTapped(OPERATOR tappedOperator)
     {
-        if( currentOperator != null && currentNum != "")
+        if (currentOperator != null)
         {
-            NumAtRight = currentNum;
-            currentNum = "";
-            switch (currentOperator)
-            {
-                case ADD:  calculationResult = Integer.parseInt(NumAtleft) + Integer.parseInt(NumAtRight); break;
-                case SUB:   calculationResult = Integer.parseInt(NumAtleft) - Integer.parseInt(NumAtRight); break;
-                case MUL:   calculationResult = Integer.parseInt(NumAtleft) * Integer.parseInt(NumAtRight); break;
-                case DIV:   calculationResult = Integer.parseInt(NumAtleft) / Integer.parseInt(NumAtRight); break;
+            if (currentNum != "") {
+
+                NumAtRight = currentNum;
+                currentNum = "";
+                switch (currentOperator) {
+                    case ADD:
+                        calculationResult = Integer.parseInt(NumAtleft) + Integer.parseInt(NumAtRight);
+                        break;
+                    case SUB:
+                        calculationResult = Integer.parseInt(NumAtleft) - Integer.parseInt(NumAtRight);
+                        break;
+                    case MUL:
+                        calculationResult = Integer.parseInt(NumAtleft) * Integer.parseInt(NumAtRight);
+                        break;
+                    case DIV:
+                        calculationResult = Integer.parseInt(NumAtleft) / Integer.parseInt(NumAtRight);
+                        break;
+                }
+                NumAtleft = String.valueOf(calculationResult);
+                txtResults.setText(NumAtleft);
+                calculationString = NumAtleft;
             }
-            NumAtleft = String.valueOf(calculationResult);
-            txtResults.setText(NumAtleft);
-            calculationString = NumAtleft;
         }
         else
         {
