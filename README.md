@@ -6,11 +6,11 @@ CalculatorDroid is a simple Android appliction for basic arithmetic calculations
   - See result in instant
   - Magic
 
-# Features
+## Features
   - Currently basic arithmatic calculations are supported
   - Future plans are to provide the scientific calculations and 2D/3D graphs for quations.
   
-### Tech
+## Tech
 
 CalculatorDroid uses following technologies:
 
